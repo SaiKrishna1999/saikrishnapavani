@@ -431,7 +431,7 @@ footer .ikat{margin-bottom:50px}
     <button class="en-b on" data-set="en">English</button>
   </div>
   <div class="lhint" id="langHint">తెలుగులో చదవడానికి ఇక్కడ తాకండి</div>
-  <button id="snd" aria-label="Sound on/off">
+  <button id="snd" class="off" aria-label="Turn music on or off">
     <svg viewBox="0 0 24 24" fill="none" stroke="#f1d891" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="rgba(241,216,145,.2)"/><g class="waves"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></g><g class="mute"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg>
   </button>
 </div>
@@ -1101,7 +1101,7 @@ function tickTimer(force){
 setInterval(tickTimer,1000);
 
 /* ================= AUDIO ================= */
-let AC=null,master=null,verb=null,soundOn=true,tanTimer=null,nextT=0,tanBufs=null;
+let AC=null,master=null,verb=null,soundOn=false,tanTimer=null,nextT=0,tanBufs=null;
 function initAudio(){
   if(AC)return;
   try{
@@ -1154,7 +1154,7 @@ $("#snd").addEventListener("click",()=>{
   master.gain.cancelScheduledValues(AC.currentTime);
   master.gain.linearRampToValueAtTime(soundOn?.9:0,AC.currentTime+.4);
   if(soundOn){clearInterval(tanTimer);tanTimer=null;tanpura();chime(880,.06)} else {clearInterval(tanTimer);tanTimer=null}
-  store("pp-snd",soundOn?"1":"0");
+  store("pp-snd2",soundOn?"1":"0");
 });
 
 /* ================= OPEN THE DOORS ================= */
@@ -1275,7 +1275,7 @@ $$("#calSheet [data-close]").forEach(b=>b.addEventListener("click",()=>$("#calSh
 
 /* ================= INIT ================= */
 const saved=store("pp-lang"); if(saved==="te"||saved==="en"){L=saved} else if((navigator.language||"").toLowerCase().startsWith("te")){L="te"}
-if(store("pp-snd")==="0"){soundOn=false;$("#snd").classList.add("off")}
+if(store("pp-snd2")==="1"){soundOn=true}else{soundOn=false;$("#snd").classList.add("off")}
 applyLang(L,false);
 if(store("pp-opened")==="1"){$(".g-prompt").style.visibility="hidden";setTimeout(()=>{if(!opened)openDoors()},1100)}
 })();
