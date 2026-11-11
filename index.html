@@ -69,26 +69,28 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webki
 
 /* ---------- GATE ---------- */
 #gate{position:fixed;top:0;left:0;right:0;height:100vh;height:100dvh;padding:calc(92px + var(--safe-t)) 0 0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow:hidden;perspective:1400px}
-.g-bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 35%,#4a1a12 0%,#2a0d09 55%,#160605 100%);transition:opacity 1.5s ease .35s}
+.g-bg{display:none}
 #gate.open .g-bg{opacity:0}
 .g-bg::before{content:"";position:absolute;inset:0;background:
   repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 46px),
   repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 1px,transparent 1px 92px);opacity:.55;mix-blend-mode:multiply}
-.g-stage{position:relative;width:min(76vw,calc((100vh - 92px - 150px) / 1.62),460px);width:min(76vw,calc((100svh - 92px - 150px) / 1.62),460px);display:flex;flex-direction:column;align-items:center;transition:transform 2.6s cubic-bezier(.42,0,.3,1),opacity .9s ease 1.35s;will-change:transform,opacity}
+.g-stage{position:relative;width:min(64vw,calc((100vh - 92px - 130px) / 2.0),360px);width:min(64vw,calc((100svh - 92px - 130px) / 2.0),360px);display:flex;flex-direction:column;align-items:center;will-change:transform}
+#gate.walk .g-stage{transform:scale(5.2);transition:transform 2.3s cubic-bezier(.55,0,.8,.4) .55s}
+#gate.walk{opacity:0;transition:opacity .5s ease 2.35s}
 #gate.open .g-prompt{opacity:0;animation:none;transition:opacity .5s}
-#gate.open .g-stage{transform:scale(1.07);opacity:0}
+
 #gate.open{pointer-events:none}
 #gate .light{transition:opacity .9s ease .1s}
-.g-top{width:116%;position:relative;z-index:5;margin-top:17%;margin-bottom:-17%}
+.g-top{width:113%;position:relative;z-index:5;margin-top:9%;margin-bottom:-17.5%}
 .g-inv{font-family:"Cinzel",serif;color:var(--gold-l);font-size:clamp(10px,2.8vw,13px);letter-spacing:.2em;text-align:center;margin-bottom:6px;opacity:.9}
 .te .g-inv{font-family:"Noto Serif Telugu",serif;letter-spacing:.06em;font-size:clamp(13px,3.6vw,16px)}
 .g-inv .en{font-family:"Cinzel",serif;letter-spacing:.24em;font-size:.82em;display:block;opacity:.75;margin-top:2px}
-.doorway{position:relative;width:100%;aspect-ratio:400/520;perspective:900px;perspective-origin:50% 45%}
-.dframe{position:absolute;left:-11.5%;right:-11.5%;top:-17.7%;bottom:0;width:123%;height:117.7%;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
-.lamp{position:absolute;bottom:-1%;width:12%;z-index:7;pointer-events:none}
-.lamp.l{left:-17%}.lamp.r{right:-17%}
-.banana{position:absolute;bottom:0;height:96%;width:auto;aspect-ratio:120/420;z-index:6;pointer-events:none}
-.banana.l{left:-37%}.banana.r{right:-37%;transform:scaleX(-1)}
+.doorway{position:relative;width:100%;aspect-ratio:400/700;perspective:1100px;perspective-origin:50% 50%;box-shadow:0 0 0 220vmax #2a1209}
+.dframe{position:absolute;left:-6.5%;top:-8.29%;width:113%;height:108.29%;filter:drop-shadow(0 10px 24px rgba(0,0,0,.55))}
+.lamp{position:absolute;bottom:-.5%;width:15%;z-index:7;pointer-events:none}
+.lamp.l{left:-22%}.lamp.r{right:-22%}
+.banana{position:absolute;bottom:0;height:80%;width:auto;aspect-ratio:120/420;z-index:6;pointer-events:none}
+.banana.l{left:-41%}.banana.r{right:-41%;transform:scaleX(-1)}
 .lamp .lflame{transform-origin:30px 25px;animation:lflick 1.4s ease-in-out infinite}
 .lamp.r .lflame{animation-delay:-.7s}
 .lamp .lglow{animation:lglow 2.2s ease-in-out infinite}
@@ -96,26 +98,27 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webki
 @keyframes lglow{50%{opacity:.75}}
 .frame-old{position:absolute;inset:-4% -5% 0 -5%;border-radius:4px 4px 0 0;background:linear-gradient(90deg,#3b1a0c,#6b3a1a 12%,#4a2410 50%,#6b3a1a 88%,#3b1a0c);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 2px rgba(241,216,145,.15)}
 .frame-old::after{content:"";position:absolute;inset:3.2% 4.2% 0 4.2%;background:#0d0302}
-.light{position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 50%,rgba(255,246,216,.85) 0%,rgba(255,215,122,.55) 35%,rgba(233,138,44,.2) 70%,transparent 100%);opacity:0;transition:opacity .9s ease}
+.light{display:none;position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 50%,rgba(255,246,216,.85) 0%,rgba(255,215,122,.55) 35%,rgba(233,138,44,.2) 70%,transparent 100%);opacity:0;transition:opacity .9s ease}
 #gate.open .light{opacity:1}
-.door{position:absolute;top:0;bottom:0;width:50%;transition:transform 2s cubic-bezier(.42,0,.32,1),filter 2s ease;will-change:transform;filter:brightness(1)}
-#gate.open .door{filter:brightness(.55)}
+.door{position:absolute;top:0;bottom:0;width:50%;transition:transform 2s cubic-bezier(.4,0,.3,1),filter 2s ease;will-change:transform;filter:brightness(1)}
+#gate.open .door{filter:brightness(.6)}
 .door svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 1px #000)}
 .door.l{left:0;transform-origin:left center}
 .door.r{right:0;transform-origin:right center}
-#gate.open .door.l{transform:rotateY(-88deg)}
-#gate.open .door.r{transform:rotateY(88deg)}
+#gate.open .door.l{transform:rotateY(82deg)}
+#gate.open .door.r{transform:rotateY(-82deg)}
 .plaque{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:3;text-align:center;pointer-events:none;transition:opacity .5s}
 #gate.open .plaque{opacity:0;transition:opacity .5s}
 .plaque div{background:linear-gradient(180deg,#f6e2a5,#c99a3d 55%,#a77b2a);color:#4a1a08;padding:8px 14px 9px;border-radius:3px;box-shadow:0 2px 0 #6e4d14,0 6px 18px rgba(0,0,0,.5),inset 0 1px 0 #fff3c8;font-family:"Ramaraja","Noto Serif Telugu",serif;font-size:clamp(15px,4.2vw,21px);line-height:1.05;white-space:nowrap}
 .en .plaque div{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600}
 .te .plaque small{font-family:"Noto Serif Telugu",serif;letter-spacing:.06em;font-size:.55em}
 .plaque small{display:block;font-family:"Cinzel",serif;font-size:.48em;letter-spacing:.28em;margin-top:4px}
-.threshold{position:relative;width:124%;height:clamp(18px,4.2vw,26px);background:linear-gradient(180deg,#f2c93f,#d9a21f);border-radius:2px;box-shadow:0 2px 0 #8a5d10,0 10px 30px rgba(0,0,0,.6);display:flex;justify-content:space-evenly;align-items:center;z-index:4}
+.threshold{position:relative;width:118%;height:clamp(18px,4.2vw,26px);background:linear-gradient(180deg,#f2c93f,#d9a21f);border-radius:2px;box-shadow:0 2px 0 #8a5d10,0 10px 30px rgba(0,0,0,.6);display:flex;justify-content:space-evenly;align-items:center;z-index:4}
 .threshold i{width:clamp(7px,1.8vw,10px);height:clamp(7px,1.8vw,10px);border-radius:50%;background:radial-gradient(circle at 35% 35%,#e0333a,#9b0f16);box-shadow:0 0 0 1px rgba(90,0,0,.3)}
-.g-step{position:relative;width:150%;height:clamp(10px,2.6vw,16px);background:linear-gradient(180deg,#5b4a40,#2e241f);box-shadow:0 6px 18px rgba(0,0,0,.55);z-index:3}
-.g-floorwrap{position:relative;flex:0 0 auto;width:165%;height:0;z-index:1;pointer-events:none}
-.g-floor{position:absolute;left:0;top:4px;width:100%;height:auto;aspect-ratio:2/1;opacity:.82}
+.g-step{position:relative;width:140%;height:clamp(10px,2.6vw,16px);background:linear-gradient(180deg,#5b4a40,#2e241f);box-shadow:0 6px 18px rgba(0,0,0,.55);z-index:3}
+.g-floorwrap{position:relative;flex:0 0 auto;width:210%;height:0;z-index:1;pointer-events:none}
+.g-floorbg{position:absolute;left:-60%;right:-60%;top:-6px;height:100vh;background:linear-gradient(180deg,#3b1e10 0%,#2a150b 40%,#1c0d06 100%)}
+.g-floor{position:absolute;left:0;top:-4px;width:100%;height:auto;aspect-ratio:2.4/1;opacity:.95}
 .g-prompt{position:relative;z-index:8;white-space:nowrap;margin-top:clamp(14px,3svh,26px);padding:6px 20px 7px;border-radius:999px;background:rgba(28,6,4,.82);border:1px solid rgba(241,216,145,.35);box-shadow:0 6px 20px rgba(0,0,0,.5);text-align:center;color:var(--gold-l);font-family:"Cinzel",serif;letter-spacing:.18em;font-size:.78rem;animation:breathe 2.4s ease-in-out infinite}
 .g-prompt span{display:block;font-family:"Noto Serif Telugu",serif;letter-spacing:.02em;font-size:1.05rem;margin-bottom:2px}
 .g-prompt{font-family:"Cormorant Garamond",serif!important;font-style:italic;letter-spacing:.04em!important;font-size:clamp(1rem,4.6vw,1.25rem)!important}
@@ -166,8 +169,9 @@ h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(2rem,8
 #hero .ikat.t{top:0}#hero .ikat.b{bottom:0;transform:scaleY(-1)}
 .mandala{position:absolute;width:min(150vw,820px);aspect-ratio:1;left:50%;top:46%;transform:translate(-50%,-50%);opacity:.22;animation:spin 140s linear infinite}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.hero-in{position:relative;z-index:2;transition:opacity 1.9s ease,transform 2.4s cubic-bezier(.2,.7,.2,1);}
-body:not(.revealed) .hero-in{opacity:0;transform:scale(.95)}
+.hero-in{position:relative;z-index:2;transition:transform 2.8s cubic-bezier(.25,.6,.25,1) .5s,filter 2.4s ease .5s;}
+body:not(.revealed) .hero-in{transform:scale(1.18);filter:brightness(.85)}
+
 #hero .rv{transition-duration:1.5s,1.8s}
 #hero .rv.d1{transition-delay:.22s}#hero .rv.d2{transition-delay:.44s}#hero .rv.d3{transition-delay:.66s}#hero .rv.d4{transition-delay:.88s}
 .hero-in{text-align:center;padding:0 20px}
@@ -485,10 +489,10 @@ footer .ikat{margin-bottom:50px}
   <div class="g-stage">
         <svg class="g-top" id="thoranam" viewBox="0 0 600 120" aria-hidden="true"></svg>
     <div class="doorway">
-      <svg class="dframe" viewBox="-46 -92 492 612" preserveAspectRatio="none" id="dframe" aria-hidden="true"></svg>
+      <svg class="dframe" viewBox="-26 -58 452 758" preserveAspectRatio="none" id="dframe" aria-hidden="true"></svg>
       <div class="light"></div>
-      <div class="door l"><svg viewBox="0 0 200 520" id="doorL"></svg></div>
-      <div class="door r"><svg viewBox="0 0 200 520" id="doorR" style="transform:scaleX(-1)"></svg></div>
+      <div class="door l"><svg viewBox="0 0 200 700" preserveAspectRatio="none" id="doorL"></svg></div>
+      <div class="door r"><svg viewBox="0 0 200 700" preserveAspectRatio="none" id="doorR" style="transform:scaleX(-1)"></svg></div>
       <div class="plaque"><div data-i="plaque">Pelli Pilupu<small>WEDDING INVITATION</small></div></div>
       <div class="g-tap"><span class="ring"></span></div>
       <svg class="bell l" viewBox="0 0 40 90" aria-hidden="true"><use href="#bellSym"/></svg>
@@ -500,7 +504,7 @@ footer .ikat{margin-bottom:50px}
     </div>
     <div class="threshold"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="g-step"></div>
-    <div class="g-floorwrap"><svg class="g-floor" id="floorMuggu" viewBox="-300 -300 600 600" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+    <div class="g-floorwrap"><div class="g-floorbg"></div><svg class="g-floor" id="floorMuggu" viewBox="-300 -300 600 600" preserveAspectRatio="none" aria-hidden="true"></svg></div>
     <div class="g-prompt" data-i="tapDoors">Tap the doors to open</div>
   </div>
 </div>
@@ -515,6 +519,7 @@ footer .ikat{margin-bottom:50px}
     <linearGradient id="goldLine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe7a6"/><stop offset="1" stop-color="#c9962f"/></linearGradient>
     <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a210c"/><stop offset=".18" stop-color="#7a3c17"/><stop offset=".5" stop-color="#8c4a1e"/><stop offset=".82" stop-color="#6e3413"/><stop offset="1" stop-color="#43200b"/></linearGradient>
     <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5e2c10"/><stop offset=".5" stop-color="#743815"/><stop offset="1" stop-color="#4f240d"/></linearGradient>
+    <linearGradient id="abrass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9b768"/><stop offset=".35" stop-color="#a98232"/><stop offset=".7" stop-color="#7c5a1c"/><stop offset="1" stop-color="#4f3608"/></linearGradient>
     <linearGradient id="strap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0b8"/><stop offset=".35" stop-color="#d8a845"/><stop offset=".7" stop-color="#9a6b1c"/><stop offset="1" stop-color="#5e400c"/></linearGradient>
     <radialGradient id="boss" cx=".38" cy=".32" r=".7"><stop offset="0" stop-color="#fffbe0"/><stop offset=".25" stop-color="#f2cf6e"/><stop offset=".65" stop-color="#b17f22"/><stop offset="1" stop-color="#4f3407"/></radialGradient>
     <linearGradient id="stone" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2b120a"/><stop offset=".5" stop-color="#4a2414"/><stop offset="1" stop-color="#2b120a"/></linearGradient>
@@ -1086,58 +1091,81 @@ $$("#lang button").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.set!=
     for(let i=0;i<8;i++)s+=boss(16+i*23,y+6,3.6);
     return s;
   }
+  function cone(cx,cy,r){return `<ellipse cx="${f(cx+r*.35)}" cy="${f(cy+r*.6)}" rx="${f(r*1.1)}" ry="${f(r*.75)}" fill="rgba(0,0,0,.5)"/><circle cx="${f(cx)}" cy="${f(cy)}" r="${f(r)}" fill="url(#boss)"/><circle cx="${f(cx)}" cy="${f(cy)}" r="${f(r*.45)}" fill="#f6dd8a"/><circle cx="${f(cx-r*.3)}" cy="${f(cy-r*.35)}" r="${f(r*.22)}" fill="#fffbe6"/>`}
+  function brassPlate(x,y,w,h,arch){
+    let d=arch?`M${x} ${y+h}V${y+h*.42}Q${x} ${y} ${x+w/2} ${y}Q${x+w} ${y} ${x+w} ${y+h*.42}V${y+h}Z`:`M${x} ${y}h${w}v${h}h${-w}Z`;
+    let s=`<path d="${d}" fill="url(#abrass)" stroke="#3d2805" stroke-width="1.2"/>`;
+    s+=`<path d="${d}" fill="none" stroke="#f3dc98" stroke-width=".8" opacity=".45" transform="translate(-.6 -.6)"/>`;
+    for(let i=0;i<10;i++){const yy=y+6+rnd()*(h-12);s+=`<path d="M${x+3} ${f(yy)}h${w-6}" stroke="rgba(60,35,5,${f(.05+rnd()*.08)})" stroke-width="${f(.6+rnd())}"/>`}
+    return s;
+  }
+  function smallPanel(x,y,w,h){
+    const b=6; let s="";
+    s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#3a1a08"/>`;
+    s+=`<path d="M${x} ${y}h${w}l${-b} ${b}h${-(w-2*b)}z" fill="#2a1205"/><path d="M${x} ${y}l${b} ${b}v${h-2*b}l${-b} ${b}z" fill="#331606"/>`;
+    s+=`<path d="M${x} ${y+h}h${w}l${-b} ${-b}h${-(w-2*b)}z" fill="#9a5c2a" opacity=".7"/><path d="M${x+w} ${y}l${-b} ${b}v${h-2*b}l${b} ${b}z" fill="#83491f" opacity=".65"/>`;
+    s+=`<rect x="${x+b}" y="${y+b}" width="${w-2*b}" height="${h-2*b}" fill="url(#field)"/>`;
+    s+=`<rect x="${x+b+3}" y="${y+b+3}" width="${w-2*b-6}" height="${h-2*b-6}" fill="none" stroke="rgba(255,214,150,.25)" stroke-width=".8"/>`;
+    s+=lotus(x+w/2,y+h/2,Math.min(w,h)*.27);
+    return s;
+  }
   function door(){
-    let s=`<rect x="0" y="0" width="200" height="520" fill="url(#wood)"/>`;
-    for(let i=0;i<34;i++){const x=rnd()*200, a=(rnd()-.5)*10;
-      s+=`<path d="M${f(x)} 0C${f(x+a)} 170 ${f(x-a)} 350 ${f(x+a*.5)} 520" stroke="rgba(${rnd()<.3?'255,210,150':'20,6,0'},${f(.04+rnd()*.1)})" stroke-width="${f(.5+rnd()*1.6)}" fill="none"/>`}
-    // stile edge
-    s+=`<rect x="1.5" y="1.5" width="197" height="517" fill="none" stroke="rgba(0,0,0,.55)" stroke-width="3"/>`;
-    s+=`<path d="M4 516V4h192" fill="none" stroke="rgba(255,214,150,.22)" stroke-width="1.2"/>`;
-    s+=panel(20,22,160,124,false);
-    s+=panel(20,174,160,170,true);
-    s+=panel(20,372,160,126,false);
-    s+=strap(152); s+=strap(352);
-    // top and bottom brass caps
-    s+=`<rect x="0" y="0" width="200" height="7" fill="url(#strap)"/><rect x="0" y="512" width="200" height="8" fill="url(#strap)"/>`;
-    // meeting stile with brass astragal
-    s+=`<rect x="189" y="0" width="11" height="520" fill="#2c1306"/><rect x="192" y="0" width="8" height="520" fill="url(#strap)"/>`;
-    for(let y=30;y<520;y+=46)s+=boss(196,y,3);
-    // lotus back-plate + ring handle
-    s+=`<g transform="translate(172 262)"><path d="M0 -18c7 6 9 12 0 18c-9-6-7-12 0-18zM0 18c7-6 9-12 0-18c-9 6-7 12 0 18zM-18 0c6-7 12-9 18 0c-6 9-12 7-18 0z" fill="url(#strap)" stroke="#5e400c" stroke-width=".6"/>${boss(0,0,5)}<path d="M0 5a12 12 0 1 0 .1 0" fill="none" stroke="#3d2805" stroke-width="5" transform="translate(1 2)" opacity=".5"/><path d="M0 5a12 12 0 1 0 .1 0" fill="none" stroke="url(#strap)" stroke-width="4"/></g>`;
+    let s=`<rect x="0" y="0" width="200" height="700" fill="url(#wood)"/>`;
+    for(let i=0;i<40;i++){const x=rnd()*200, a=(rnd()-.5)*10;
+      s+=`<path d="M${f(x)} 0C${f(x+a)} 230 ${f(x-a)} 470 ${f(x+a*.5)} 700" stroke="rgba(${rnd()<.3?'255,210,150':'20,6,0'},${f(.04+rnd()*.1)})" stroke-width="${f(.5+rnd()*1.5)}" fill="none"/>`}
+    s+=`<rect x="1.5" y="1.5" width="197" height="697" fill="none" stroke="rgba(0,0,0,.55)" stroke-width="3"/>`;
+    // arched brass-clad top panel with embossed lotus + kalasam silhouette
+    s+=brassPlate(18,18,164,132,true);
+    s+=`<g opacity=".55" fill="none" stroke="#6b4a0e" stroke-width="1.4">`;
+    for(let k=0;k<12;k++){const a=Math.PI+k*Math.PI/11;s+=`<path d="M100 132L${f(100+Math.cos(a)*62)} ${f(132+Math.sin(a)*62)}"/>`}
+    s+=`<path d="M38 132a62 62 0 0 1 124 0"/><path d="M58 132a42 42 0 0 1 84 0"/></g>`;
+    s+=`<g transform="translate(100 104)"><path d="M-12 18c-10-4-12-16-4-24h32c8 8 6 20-4 24z" fill="#b8892c" stroke="#5e400c"/><path d="M-9-6h18l-2 5h-14z" fill="#d9ad4a" stroke="#5e400c" stroke-width=".8"/><path d="M0-22c-5 0-8 5-8 10 0 4 3 6 8 6s8-2 8-6c0-5-3-10-8-10z" fill="#c9962f" stroke="#5e400c" stroke-width=".8"/><path d="M-6-8c-8-3-14-2-18 2 6 1 12 0 18-2zM6-8c8-3 14-2 18 2-6 1-12 0-18-2z" fill="#7a5a14"/></g>`;
+    s+=cone(100,32,4);
+    // grid of small carved panels (2 x 4) with big brass bosses at every crossing
+    const xs=[18,104], ys=[172,268,364,460], pw=78, ph=86;
+    xs.forEach(x=>ys.forEach(y=>{s+=smallPanel(x,y,pw,ph)}));
+    // stiles/rails brass strips
+    [162,258,354,450,552].forEach(y=>{s+=`<rect x="10" y="${y}" width="182" height="8" fill="url(#strap)"/><rect x="10" y="${y}" width="182" height="1" fill="#fff1bf" opacity=".7"/>`});
+    [[10,162,8,398],[96,162,8,398],[184,162,8,398]].forEach(([x,y,w,h])=>{s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#strap)" opacity=".95"/>`});
+    [166,262,358,454,556].forEach(y=>[14,100,188].forEach(x=>{s+=cone(x,y,6.2)}));
+    [214,310,406,502].forEach(y=>[14,100,188].forEach(x=>{s+=cone(x,y,3.6)}));
+    // brass-clad kick plate with embossed scallops
+    s+=brassPlate(10,580,182,104,false);
+    for(let x=18;x<186;x+=24){s+=`<path d="M${x} 640q12-28 24 0" fill="none" stroke="#6b4a0e" stroke-width="1.4" opacity=".6"/><circle cx="${x+12}" cy="652" r="2.5" fill="#6b4a0e" opacity=".5"/>`}
+    for(let x=22;x<186;x+=20)s+=cone(x,590,3.2);
+    for(let x=22;x<186;x+=20)s+=cone(x,668,3.2);
+    // caps + meeting strip
+    s+=`<rect x="0" y="0" width="200" height="8" fill="url(#strap)"/><rect x="0" y="690" width="200" height="10" fill="url(#strap)"/>`;
+    s+=`<rect x="190" y="0" width="10" height="700" fill="url(#strap)"/>`;
+    // large temple ring handle on a lotus plate
+    s+=`<g transform="translate(168 380)"><circle r="15" fill="url(#strap)" stroke="#5e400c"/>`;
+    for(let k=0;k<8;k++){const a=k*Math.PI/4;s+=`<ellipse cx="${f(Math.cos(a)*15)}" cy="${f(Math.sin(a)*15)}" rx="6" ry="3.4" transform="rotate(${k*45} ${f(Math.cos(a)*15)} ${f(Math.sin(a)*15)})" fill="url(#strap)" stroke="#5e400c" stroke-width=".6"/>`}
+    s+=cone(0,0,6)+`<path d="M0 6a17 17 0 1 0 .1 0" fill="none" stroke="#3d2805" stroke-width="5.5" transform="translate(1.5 2.5)" opacity=".45"/><path d="M0 6a17 17 0 1 0 .1 0" fill="none" stroke="url(#strap)" stroke-width="4.5"/></g>`;
     return s;
   }
   function frame(){
-    // viewBox -46 -92 492 612; opening = 0..400 x 0..520
-    let s=`<rect x="-46" y="-92" width="492" height="612" fill="url(#stone)"/>`;
-    // jambs
-    [[-46,0],[400,1]].forEach(([x,side])=>{
-      s+=`<rect x="${x}" y="-92" width="46" height="612" fill="url(#lintel)" transform="rotate(${side?0:0})"/>`;
-      s+=`<rect x="${x+5}" y="-40" width="36" height="560" fill="none" stroke="rgba(255,214,150,.22)" stroke-width="1"/>`;
-      s+=`<rect x="${x+11}" y="-34" width="24" height="548" fill="rgba(0,0,0,.22)"/>`;
-      // rope twist
-      for(let y=-30;y<440;y+=9){s+=`<path d="M${x+15} ${y}l16 7" stroke="rgba(255,214,150,.28)" stroke-width="2"/><path d="M${x+15} ${y+1.5}l16 7" stroke="rgba(0,0,0,.35)" stroke-width="1"/>`}
-      // rosettes
-      [60,250].forEach(y=>{s+=`<circle cx="${x+23}" cy="${y}" r="11" fill="#3a1a0b" stroke="rgba(255,214,150,.4)"/>`;for(let k=0;k<8;k++){const a=k*Math.PI/4;s+=`<ellipse cx="${f(x+23+Math.cos(a)*6.5)}" cy="${f(y+Math.sin(a)*6.5)}" rx="3.2" ry="1.6" transform="rotate(${k*45} ${f(x+23+Math.cos(a)*6.5)} ${f(y+Math.sin(a)*6.5)})" fill="#6b3314" stroke="rgba(255,214,150,.4)" stroke-width=".5"/>`}s+=boss(x+23,y,2.8)});
-      // turmeric base with kumkum bottus (Telugu threshold custom)
-      s+=`<rect x="${x+3}" y="440" width="40" height="80" fill="#e8b52e"/><rect x="${x+3}" y="440" width="40" height="3" fill="#f7d873"/>`;
-      [458,480,502].forEach(y=>s+=`<circle cx="${x+23}" cy="${y}" r="4.6" fill="#b3161d"/><circle cx="${x+22}" cy="${y-1.3}" r="1.4" fill="#ff6a6a" opacity=".6"/>`);
+    // viewBox -26 -58 452 758; opening = 0..400 x 0..700 (slim jambs, slim lintel)
+    let s="";
+    [[-26,0],[400,1]].forEach(([x])=>{
+      s+=`<rect x="${x}" y="-58" width="26" height="758" fill="url(#lintel)"/>`;
+      s+=`<rect x="${x+3}" y="-30" width="20" height="730" fill="none" stroke="rgba(255,214,150,.28)" stroke-width=".8"/>`;
+      // carved creeper
+      let d="";for(let y=-24;y<600;y+=22){d+=`M${x+13} ${y}q6 5 0 11q-6 5 0 11`}
+      s+=`<path d="${d}" fill="none" stroke="rgba(255,214,150,.4)" stroke-width="1.2"/>`;
+      for(let y=-13;y<600;y+=22)s+=`<circle cx="${x+13+(((y+13)/22)%2?-4:4)}" cy="${y}" r="1.6" fill="rgba(255,214,150,.45)"/>`;
+      // turmeric & kumkum at the foot of the door frame
+      s+=`<rect x="${x+1}" y="604" width="24" height="96" fill="#e8b52e"/><rect x="${x+1}" y="604" width="24" height="3" fill="#f7d873"/>`;
+      [626,652,678].forEach(y=>s+=`<circle cx="${x+13}" cy="${y}" r="4.2" fill="#b3161d"/>`);
+      s+=`<rect x="${x+(x<0?23:0)}" y="-58" width="3" height="758" fill="url(#strap)"/>`;
     });
-    // lintel
-    s+=`<rect x="-46" y="-92" width="492" height="92" fill="url(#lintel)"/>`;
-    s+=`<rect x="-46" y="-92" width="492" height="8" fill="#22100a"/><rect x="-46" y="-84" width="492" height="2" fill="rgba(255,214,150,.3)"/>`;
-    // scalloped petal row
-    for(let x=-40;x<440;x+=16){s+=`<path d="M${x} -66q8 -14 16 0z" fill="#5e2c12" stroke="rgba(255,214,150,.35)" stroke-width=".8"/>`}
-    s+=`<rect x="-46" y="-66" width="492" height="3" fill="rgba(0,0,0,.45)"/><rect x="-46" y="-63" width="492" height="2" fill="rgba(255,214,150,.25)"/>`;
-    // beaded band
-    for(let x=-40;x<446;x+=8)s+=`<circle cx="${x}" cy="-12" r="2" fill="rgba(255,214,150,.35)"/>`;
-    s+=`<rect x="-46" y="-6" width="492" height="6" fill="#1e0c05"/>`;
-    // central medallion with శ్రీ
-    s+=`<g transform="translate(200 -36)"><ellipse cx="0" cy="0" rx="62" ry="22" fill="#2a1209" stroke="rgba(255,214,150,.35)"/>`;
-    for(let k=-1;k<=1;k+=2){s+=`<path d="M${k*24} -2c${k*14} -10 ${k*30} -10 ${k*36} 0c${-k*8} 8 ${-k*24} 8 ${-k*36} 0z" fill="#5e2c12" stroke="rgba(255,214,150,.4)" stroke-width=".8"/>`}
-    s+=`<circle r="20" fill="url(#boss)"/><circle r="15.5" fill="#5a0d13"/><text y="7" text-anchor="middle" font-size="19" font-family="Noto Serif Telugu, serif" font-weight="700" fill="#f6dc8e">శ్రీ</text></g>`;
-    // dark opening with inner shadow
-    s+=`<rect x="0" y="0" width="400" height="520" fill="none"/>`;
-    s+=`<rect x="-2" y="-2" width="404" height="524" fill="none" stroke="rgba(0,0,0,.7)" stroke-width="4"/>`;
+    s+=`<rect x="-26" y="-58" width="452" height="58" fill="url(#lintel)"/>`;
+    s+=`<rect x="-26" y="-58" width="452" height="5" fill="#1e0c05"/><rect x="-26" y="-53" width="452" height="1.5" fill="rgba(255,214,150,.3)"/>`;
+    for(let x=-22;x<426;x+=12)s+=`<path d="M${x} -40q6 -10 12 0z" fill="#5e2c12" stroke="rgba(255,214,150,.35)" stroke-width=".7"/>`;
+    s+=`<rect x="-26" y="-40" width="452" height="2" fill="rgba(0,0,0,.45)"/>`;
+    for(let x=-20;x<426;x+=7)s+=`<circle cx="${x}" cy="-8" r="1.5" fill="rgba(255,214,150,.4)"/>`;
+    s+=`<rect x="-26" y="-3" width="452" height="3" fill="url(#strap)"/>`;
+    s+=`<g transform="translate(200 -24)"><circle r="14" fill="url(#boss)"/><circle r="10.5" fill="#5a0d13"/><text y="5" text-anchor="middle" font-size="13" font-family="Noto Serif Telugu, serif" font-weight="700" fill="#f6dc8e">శ్రీ</text></g>`;
+    s+=`<rect x="-1.5" y="-1.5" width="403" height="703" fill="none" stroke="rgba(0,0,0,.7)" stroke-width="3"/>`;
     return s;
   }
   $("#doorL").innerHTML=door(); seed=19; $("#doorR").innerHTML=door();
@@ -1187,27 +1215,31 @@ $$("svg[data-muggu]").forEach(sv=>{
   if(t==="lotus") bandMuggu(sv,520,160,62,"#8c1a1f","#d49a22");
   if(t==="small") bandMuggu(sv,520,110,40,"#f1d891","#e9b73c");
 });
-// gate floor muggu: large rangoli in front of the gadapa (rice-flour white, turmeric & kumkum)
-(function(){const sv=$("#floorMuggu"); const F=n=>n.toFixed(1); let h="";
-  const W="rgba(255,250,236,.92)", Y="#e9b73c", K="#b3161d";
-  const P=(a,r)=>[Math.cos(a)*r,Math.sin(a)*r];
-  const petal=(a,r0,r1,w)=>{const p0=P(a,r0),p1=P(a,r1),c1=P(a+w,(r0+r1)/2),c2=P(a-w,(r0+r1)/2);return `M${F(p0[0])} ${F(p0[1])}Q${F(c1[0])} ${F(c1[1])} ${F(p1[0])} ${F(p1[1])}Q${F(c2[0])} ${F(c2[1])} ${F(p0[0])} ${F(p0[1])}Z`};
-  // outer scalloped border ring
-  let d="";const N=36;for(let k=0;k<N;k++){const a0=k*2*Math.PI/N,a1=(k+1)*2*Math.PI/N,am=(a0+a1)/2;const p0=P(a0,250),p1=P(a1,250),c=P(am,282);d+=`M${F(p0[0])} ${F(p0[1])}Q${F(c[0])} ${F(c[1])} ${F(p1[0])} ${F(p1[1])}`}
-  h+=`<path class="ln" pathLength="1" d="${d}" stroke="${W}" stroke-width="3"/>`;
-  h+=`<circle class="ln" pathLength="1" r="250" stroke="${W}" stroke-width="2"/>`;
-  for(let k=0;k<N;k++){const c=P((k+.5)*2*Math.PI/N,264);h+=`<circle class="dt" cx="${F(c[0])}" cy="${F(c[1])}" r="4" fill="${k%2?Y:K}"/>`}
-  // ring of 24 petals filled turmeric/kumkum
-  for(let k=0;k<24;k++){h+=`<path d="${petal(k*Math.PI/12,150,238,.11)}" fill="${k%2?Y:K}" fill-opacity=".85" stroke="${W}" stroke-width="2.4"/>`}
-  // interlaced loops ring (sikku)
-  d="";for(let k=0;k<16;k++){const c=P(k*Math.PI/8,128);d+=`M${F(c[0]+20)} ${F(c[1])}a20 20 0 1 0 -40 0a20 20 0 1 0 40 0`}
-  h+=`<path class="ln" pathLength="1" d="${d}" stroke="${W}" stroke-width="2.6"/>`;
-  // inner 8+8 lotus
-  for(let k=0;k<8;k++){h+=`<path d="${petal(k*Math.PI/4+Math.PI/8,30,104,.3)}" fill="${Y}" fill-opacity=".9" stroke="${W}" stroke-width="2.4"/>`}
-  for(let k=0;k<8;k++){h+=`<path d="${petal(k*Math.PI/4,24,92,.36)}" fill="${K}" fill-opacity=".9" stroke="${W}" stroke-width="2.4"/>`}
-  h+=`<circle r="26" fill="${Y}" stroke="${W}" stroke-width="3"/><circle r="11" fill="${K}" stroke="${W}" stroke-width="2"/>`;
-  // dot grid (pulli) around the loops
-  for(let k=0;k<16;k++){const c=P(k*Math.PI/8,128);h+=`<circle class="dt" cx="${F(c[0])}" cy="${F(c[1])}" r="3.4" fill="${W}"/>`}
+// gate floor muggu: traditional chukkala muggu in white rice flour with a kumkum border
+(function(){const sv=$("#floorMuggu"); if(!sv)return; const F=n=>n.toFixed(1); let h=""; const W="rgba(255,250,238,.95)";
+  sv.setAttribute("viewBox","-300 -125 600 250");
+  const sp=32, N=4; // dot spacing; diamond of dots |i|+|j|<=N
+  // lattice of curved diamonds around each dot (sikku muggu)
+  let d="";
+  for(let i=-N;i<=N;i++)for(let j=-N;j<=N;j++){ if(Math.abs(i)+Math.abs(j)>N)continue;
+    const cx=(i-j)*sp*.75, cy=(i+j)*sp*.75*.42, r=sp*.75, ry=r*.42;
+    d+=`M${F(cx)} ${F(cy-ry)}Q${F(cx+r*.15)} ${F(cy-ry*.15)} ${F(cx+r)} ${F(cy)}Q${F(cx+r*.15)} ${F(cy+ry*.15)} ${F(cx)} ${F(cy+ry)}Q${F(cx-r*.15)} ${F(cy+ry*.15)} ${F(cx-r)} ${F(cy)}Q${F(cx-r*.15)} ${F(cy-ry*.15)} ${F(cx)} ${F(cy-ry)}Z`;
+  }
+  h+=`<path class="ln" pathLength="1" d="${d}" stroke="${W}" stroke-width="1.5"/>`;
+  // dots (pulli)
+  for(let i=-N;i<=N;i++)for(let j=-N;j<=N;j++){ if(Math.abs(i)+Math.abs(j)>N)continue;
+    h+=`<ellipse class="dt" cx="${F((i-j)*sp*.75)}" cy="${F((i+j)*sp*.75*.42)}" rx="2.6" ry="1.4" fill="${W}"/>`;}
+  // outer petals around the diamond edge
+  const R=(N+1)*sp*.75; d="";
+  for(let k=0;k<24;k++){const a=k*2*Math.PI/24, a2=(k+1)*2*Math.PI/24, am=(a+a2)/2;
+    const p=(ang,r)=>[Math.cos(ang)*r,Math.sin(ang)*r*.42];
+    const p0=p(a,R*1.02),p1=p(a2,R*1.02),c=p(am,R*1.22);
+    d+=`M${F(p0[0])} ${F(p0[1])}Q${F(c[0])} ${F(c[1])} ${F(p1[0])} ${F(p1[1])}`;}
+  h+=`<path class="ln" pathLength="1" d="${d}" stroke="${W}" stroke-width="2"/>`;
+  h+=`<ellipse class="ln" pathLength="1" cx="0" cy="0" rx="${F(R*1.3)}" ry="${F(R*1.3*.42)}" stroke="#c4161e" stroke-width="3" stroke-dasharray=".004 .012"/>`;
+  for(let k=0;k<24;k++){const am=(k+.5)*2*Math.PI/24;h+=`<ellipse class="dt" cx="${F(Math.cos(am)*R*1.16)}" cy="${F(Math.sin(am)*R*1.16*.42)}" rx="3" ry="1.6" fill="${k%2?'#e9b73c':'#c4161e'}"/>`}
+  // centre lotus in turmeric & kumkum
+  h+=`<ellipse cx="0" cy="0" rx="13" ry="6" fill="#e9b73c" stroke="${W}" stroke-width="1.4"/><ellipse cx="0" cy="0" rx="5" ry="2.4" fill="#c4161e"/>`;
   sv.innerHTML=h; sv.classList.add("muggu"); setTimeout(()=>sv.classList.add("in"),200);
 })();
 
@@ -1350,12 +1382,14 @@ function openDoors(){
   if(AC){if(AC.state==="suspended")AC.resume();
     const t=AC.currentTime+.05;bell(392,t,.16);bell(523.25,t+.55,.12);bell(392,t+1.2,.1);
     setTimeout(()=>{if(soundOn)tanpura()},1800);}
-  const gate=$("#gate");gate.classList.add("open");
-  document.body.classList.add("opened");
-  setTimeout(()=>{document.body.classList.add("revealed");$$("#hero .rv").forEach(e=>e.classList.add("in"))},350);
-  setTimeout(()=>petals(26),1200);
-  setTimeout(()=>document.body.classList.remove("locked"),2200);
-  setTimeout(()=>gate.remove(),2700);
+  const gate=$("#gate"), st=$(".g-stage"), dw=$(".doorway");
+  const sr=st.getBoundingClientRect(), dr=dw.getBoundingClientRect();
+  st.style.transformOrigin=`${dr.left-sr.left+dr.width/2}px ${dr.top-sr.top+dr.height*.55}px`;
+  gate.classList.add("open"); void gate.offsetWidth; gate.classList.add("walk");
+  document.body.classList.add("opened","revealed");
+  setTimeout(()=>petals(22),1700);
+  setTimeout(()=>document.body.classList.remove("locked"),2500);
+  setTimeout(()=>gate.remove(),2950);
   store("pp-opened","1");
   if(L==="en"&&!store("pp-hinted")){setTimeout(()=>{const h=$("#langHint");h.classList.add("on");store("pp-hinted","1");setTimeout(()=>h.classList.remove("on"),5200)},3800)}
 }
@@ -1363,6 +1397,7 @@ $(".doorway").addEventListener("click",openDoors);
 $(".g-top").addEventListener("click",openDoors);
 $(".threshold").addEventListener("click",openDoors);
 
+$$("#hero .rv").forEach(e=>{e.style.transition="none";e.classList.add("in");requestAnimationFrame(()=>requestAnimationFrame(()=>e.style.transition=""))});
 /* ================= REVEAL ================= */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.18,rootMargin:"0px 0px -6% 0px"});
 $$(".rv:not(#hero .rv), svg[data-muggu]").forEach(e=>io.observe(e));
