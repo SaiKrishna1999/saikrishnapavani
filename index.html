@@ -116,9 +116,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webki
 .threshold{position:relative;width:118%;height:clamp(18px,4.2vw,26px);background:linear-gradient(180deg,#f2c93f,#d9a21f);border-radius:2px;box-shadow:0 2px 0 #8a5d10,0 10px 30px rgba(0,0,0,.6);display:flex;justify-content:space-evenly;align-items:center;z-index:4}
 .threshold i{width:clamp(7px,1.8vw,10px);height:clamp(7px,1.8vw,10px);border-radius:50%;background:radial-gradient(circle at 35% 35%,#e0333a,#9b0f16);box-shadow:0 0 0 1px rgba(90,0,0,.3)}
 .g-step{position:relative;width:140%;height:clamp(10px,2.6vw,16px);background:linear-gradient(180deg,#5b4a40,#2e241f);box-shadow:0 6px 18px rgba(0,0,0,.55);z-index:3}
-.g-floorwrap{position:relative;flex:0 0 auto;width:210%;height:0;z-index:1;pointer-events:none}
-.g-floorbg{position:absolute;left:-60%;right:-60%;top:-6px;height:100vh;background:linear-gradient(180deg,#3b1e10 0%,#2a150b 40%,#1c0d06 100%)}
-.g-floor{position:absolute;left:0;top:-4px;width:100%;height:auto;aspect-ratio:2.4/1;opacity:.95}
+.g-floorwrap{position:relative;flex:0 0 auto;width:230%;height:0;z-index:1;pointer-events:none}
+.g-floorbg{position:absolute;left:-60%;right:-60%;top:-6px;height:100vh;background:linear-gradient(180deg,#e9dcc3 0%,#f6eddc 18%,#fbf4e6 60%)}
+.g-floor{position:absolute;left:0;top:6px;width:100%;height:auto;aspect-ratio:520/160}
 .g-prompt{position:relative;z-index:8;white-space:nowrap;margin-top:clamp(14px,3svh,26px);padding:6px 20px 7px;border-radius:999px;background:rgba(28,6,4,.82);border:1px solid rgba(241,216,145,.35);box-shadow:0 6px 20px rgba(0,0,0,.5);text-align:center;color:var(--gold-l);font-family:"Cinzel",serif;letter-spacing:.18em;font-size:.78rem;animation:breathe 2.4s ease-in-out infinite}
 .g-prompt span{display:block;font-family:"Noto Serif Telugu",serif;letter-spacing:.02em;font-size:1.05rem;margin-bottom:2px}
 .g-prompt{font-family:"Cormorant Garamond",serif!important;font-style:italic;letter-spacing:.04em!important;font-size:clamp(1rem,4.6vw,1.25rem)!important}
@@ -349,6 +349,7 @@ button.btn{cursor:pointer;background:none}
 .art .strand{animation:tw 2s ease-in-out infinite}
 .art .bk{opacity:.35;animation:bk 5s ease-in-out infinite}
 @keyframes bk{0%,100%{opacity:.15;transform:translateY(0)}50%{opacity:.55;transform:translateY(-4px)}}
+.doorway .g-prompt{position:absolute;left:50%;top:66%;transform:translateX(-50%);margin:0!important;z-index:9;font-size:clamp(.95rem,4.2vw,1.15rem)!important;padding:6px 16px 7px;background:rgba(28,6,4,.78)}
 /* ---------- TALAMBRALU ---------- */
 #tala{background:radial-gradient(100% 70% at 50% 30%,#5a1a12,#2e0a08 70%,#1c0505);color:var(--gold-l);padding:70px 0 0;overflow:hidden}
 .tala-h p{opacity:.8;max-width:380px;margin:10px auto 0}
@@ -495,6 +496,7 @@ footer .ikat{margin-bottom:50px}
       <div class="door r"><svg viewBox="0 0 200 700" preserveAspectRatio="none" id="doorR" style="transform:scaleX(-1)"></svg></div>
       <div class="plaque"><div data-i="plaque">Pelli Pilupu<small>WEDDING INVITATION</small></div></div>
       <div class="g-tap"><span class="ring"></span></div>
+      <div class="g-prompt" data-i="tapDoors">Tap the doors to open</div>
       <svg class="bell l" viewBox="0 0 40 90" aria-hidden="true"><use href="#bellSym"/></svg>
       <svg class="bell r" viewBox="0 0 40 90" aria-hidden="true"><use href="#bellSym"/></svg>
       <svg class="banana l" viewBox="0 0 120 420" aria-hidden="true"><use href="#bananaSym"/></svg>
@@ -505,7 +507,6 @@ footer .ikat{margin-bottom:50px}
     <div class="threshold"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="g-step"></div>
     <div class="g-floorwrap"><div class="g-floorbg"></div><svg class="g-floor" id="floorMuggu" viewBox="-300 -300 600 600" preserveAspectRatio="none" aria-hidden="true"></svg></div>
-    <div class="g-prompt" data-i="tapDoors">Tap the doors to open</div>
   </div>
 </div>
 
@@ -1215,32 +1216,11 @@ $$("svg[data-muggu]").forEach(sv=>{
   if(t==="lotus") bandMuggu(sv,520,160,62,"#8c1a1f","#d49a22");
   if(t==="small") bandMuggu(sv,520,110,40,"#f1d891","#e9b73c");
 });
-// gate floor muggu: traditional chukkala muggu in white rice flour with a kumkum border
-(function(){const sv=$("#floorMuggu"); if(!sv)return; const F=n=>n.toFixed(1); let h=""; const W="rgba(255,250,238,.95)";
-  sv.setAttribute("viewBox","-300 -125 600 250");
-  const sp=32, N=4; // dot spacing; diamond of dots |i|+|j|<=N
-  // lattice of curved diamonds around each dot (sikku muggu)
-  let d="";
-  for(let i=-N;i<=N;i++)for(let j=-N;j<=N;j++){ if(Math.abs(i)+Math.abs(j)>N)continue;
-    const cx=(i-j)*sp*.75, cy=(i+j)*sp*.75*.42, r=sp*.75, ry=r*.42;
-    d+=`M${F(cx)} ${F(cy-ry)}Q${F(cx+r*.15)} ${F(cy-ry*.15)} ${F(cx+r)} ${F(cy)}Q${F(cx+r*.15)} ${F(cy+ry*.15)} ${F(cx)} ${F(cy+ry)}Q${F(cx-r*.15)} ${F(cy+ry*.15)} ${F(cx-r)} ${F(cy)}Q${F(cx-r*.15)} ${F(cy-ry*.15)} ${F(cx)} ${F(cy-ry)}Z`;
-  }
-  h+=`<path class="ln" pathLength="1" d="${d}" stroke="${W}" stroke-width="1.5"/>`;
-  // dots (pulli)
-  for(let i=-N;i<=N;i++)for(let j=-N;j<=N;j++){ if(Math.abs(i)+Math.abs(j)>N)continue;
-    h+=`<ellipse class="dt" cx="${F((i-j)*sp*.75)}" cy="${F((i+j)*sp*.75*.42)}" rx="2.6" ry="1.4" fill="${W}"/>`;}
-  // outer petals around the diamond edge
-  const R=(N+1)*sp*.75; d="";
-  for(let k=0;k<24;k++){const a=k*2*Math.PI/24, a2=(k+1)*2*Math.PI/24, am=(a+a2)/2;
-    const p=(ang,r)=>[Math.cos(ang)*r,Math.sin(ang)*r*.42];
-    const p0=p(a,R*1.02),p1=p(a2,R*1.02),c=p(am,R*1.22);
-    d+=`M${F(p0[0])} ${F(p0[1])}Q${F(c[0])} ${F(c[1])} ${F(p1[0])} ${F(p1[1])}`;}
-  h+=`<path class="ln" pathLength="1" d="${d}" stroke="${W}" stroke-width="2"/>`;
-  h+=`<ellipse class="ln" pathLength="1" cx="0" cy="0" rx="${F(R*1.3)}" ry="${F(R*1.3*.42)}" stroke="#c4161e" stroke-width="3" stroke-dasharray=".004 .012"/>`;
-  for(let k=0;k<24;k++){const am=(k+.5)*2*Math.PI/24;h+=`<ellipse class="dt" cx="${F(Math.cos(am)*R*1.16)}" cy="${F(Math.sin(am)*R*1.16*.42)}" rx="3" ry="1.6" fill="${k%2?'#e9b73c':'#c4161e'}"/>`}
-  // centre lotus in turmeric & kumkum
-  h+=`<ellipse cx="0" cy="0" rx="13" ry="6" fill="#e9b73c" stroke="${W}" stroke-width="1.4"/><ellipse cx="0" cy="0" rx="5" ry="2.4" fill="#c4161e"/>`;
-  sv.innerHTML=h; sv.classList.add("muggu"); setTimeout(()=>sv.classList.add("in"),200);
+// gate floor muggu: the site's lotus-and-chain muggu, on an ivory floor in front of the gadapa
+(function(){const sv=$("#floorMuggu"); if(!sv)return;
+  sv.setAttribute("viewBox","0 0 520 160");
+  bandMuggu(sv,520,160,62,"#8c1a1f","#d49a22");
+  sv.classList.add("muggu"); setTimeout(()=>sv.classList.add("in"),250);
 })();
 
 /* ================= HERO MANDALA ================= */
