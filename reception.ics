@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Pabba Family//Pelli Pilupu//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:reception-20261206@pelli-pilupu
+DTSTAMP:20261112T000000Z
+DTSTART:20261206T133000Z
+DTEND:20261206T173000Z
+SUMMARY:Sai Krishna & Pavani – Reception
+LOCATION:IRA Convention\, Gandiguda\, Shamshabad\, Hyderabad
+DESCRIPTION:Reception from 7:00 p.m.\, followed by dinner.\nDirections: https://www.google.com/maps/dir/?api=1&destination=IRA+Convention+Gandiguda+Shamshabad&destination_place_id=ChIJ-aqW69O_yzsR-RC4YFW9C-Q
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sai Krishna & Pavani's reception
+TRIGGER:-P1D
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sai Krishna & Pavani's reception
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
