@@ -248,10 +248,11 @@ body:not(.revealed) .hero-in{transform:scale(1.18);filter:brightness(.85)}
 
 /* ---------- COUNTDOWN ---------- */
 #count{background:linear-gradient(180deg,#3a0a0e,#5a0d13 40%,#3a0a0e);color:var(--gold-l);padding:0 0 70px;overflow:hidden}
-.diyas{display:flex;justify-content:space-around;padding:0 6px;height:92px}
+.diyas{display:flex;justify-content:space-around;align-items:flex-start;padding:0 6px;height:92px}
 .hang{position:relative;display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:sway 5s ease-in-out infinite}
 .hang:nth-child(2n){animation-delay:-2.5s}.hang:nth-child(3n){animation-duration:6s}
-.hang .ch{width:1px;background:linear-gradient(var(--gold-d),var(--gold));flex:1}
+.hang i{display:block;width:9px;height:9px;border-radius:50%;margin-top:-1px;box-shadow:inset -1px -1px 0 rgba(0,0,0,.2)}
+.hang .ch{flex:0 0 18px;width:1px;background:linear-gradient(var(--gold-d),var(--gold));flex:1}
 .hang .diya{transform:scale(1.15)}
 .count-h{margin-top:28px}
 .c-date{font-size:1.05rem;opacity:.9;margin-top:10px}
@@ -501,8 +502,6 @@ footer .ikat{margin-bottom:50px}
       <svg class="bell r" viewBox="0 0 40 90" aria-hidden="true"><use href="#bellSym"/></svg>
       <svg class="banana l" viewBox="0 0 120 420" aria-hidden="true"><use href="#bananaSym"/></svg>
       <svg class="banana r" viewBox="0 0 120 420" aria-hidden="true"><use href="#bananaSym"/></svg>
-      <svg class="lamp l" viewBox="0 0 60 170" aria-hidden="true"><use href="#lampSym"/></svg>
-      <svg class="lamp r" viewBox="0 0 60 170" aria-hidden="true"><use href="#lampSym"/></svg>
     </div>
     <div class="threshold"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="g-step"></div>
@@ -633,7 +632,7 @@ footer .ikat{margin-bottom:50px}
       <svg class="corner bl" viewBox="0 0 62 62"><use href="#cornerSym"/></svg>
       <svg class="corner br" viewBox="0 0 62 62"><use href="#cornerSym"/></svg>
       <div class="inv-blessing" data-i="withBlessings">With the blessings of</div>
-      <div class="elders"><span data-i="grandma">Smt. Pabba Manemma</span><br><span class="late"><span class="diya" title="In loving memory"><span class="bowl"></span><span class="flame"></span></span><span data-i="grandpa">Late Sri Pabba Rajesham</span></span></div>
+      <div class="elders"><span data-i="grandma">Smt. Pabba Manemma</span><br><span class="late"><span data-i="grandpa">Late Sri Pabba Rajesham</span></span></div>
       <div class="inv-blessing after" data-i="blessAfter"></div>
       <p class="inv-text" data-i="solicit">We solicit your gracious presence with family &amp; friends on the auspicious occasion of the marriage of our elder son</p>
       <div class="chi" data-i="chi">Chi.</div>
@@ -903,9 +902,9 @@ const T={
   directions:"Directions", calendar:"Save the date",
   ev2Kicker:"The Celebration", reception:"Reception", ev2Day:"Sunday · December 2026", ev2Time:"7:00 p.m. onwards",
   ev2Venue:"IRA Convention", ev2Addr:"Gandiguda, Shamshabad, Hyderabad",
-  talaKicker:"Shower your blessings", talaTitle:"Talambralu",
-  talaLead:"Tap anywhere — or press and hold — to shower turmeric rice and pearls on the couple, just as you will at the mandapam.",
-  showerBtn:"Shower Talambralu",
+  talaKicker:"Shower your blessings", talaTitle:"Akshintalu",
+  talaLead:"Tap anywhere — or press and hold — to shower akshintalu on the couple, just as you will at the mandapam.",
+  showerBtn:"Shower Akshintalu",
   blessedN:n=>`You've showered <b>${n}</b> ${n==1?"blessing":"blessings"}`,
   blessed0:"Your first handful awaits",
   toasts:["Shubham!","Kalyanam kamaneeyam!","Blessings received 🙏","Dheerga sumangali bhava!","Sukhee bhava!"],
@@ -962,9 +961,9 @@ const T={
   directions:"దారి చూపు", calendar:"తేదీ గుర్తుంచుకోండి",
   ev2Kicker:"విందు", reception:"రిసెప్షన్", ev2Day:"ఆదివారం · డిసెంబర్ 2026", ev2Time:"సాయంత్రం 7:00 గంటల నుండి",
   ev2Venue:"ఇరా కన్వెన్షన్", ev2Addr:"గండిగూడ, శంషాబాద్, హైదరాబాద్",
-  talaKicker:"మీ ఆశీస్సులు కురిపించండి", talaTitle:"తలంబ్రాలు",
-  talaLead:"ఎక్కడైనా తాకండి — లేదా నొక్కి పట్టుకోండి — మండపంలో లాగే వధూవరులపై పసుపు అక్షింతలు, ముత్యాల తలంబ్రాలు కురిపించండి.",
-  showerBtn:"తలంబ్రాలు పోయండి",
+  talaKicker:"మీ ఆశీస్సులు కురిపించండి", talaTitle:"అక్షింతలు",
+  talaLead:"ఎక్కడైనా తాకండి — లేదా నొక్కి పట్టుకోండి — మండపంలో లాగే వధూవరులపై అక్షింతలు చల్లి ఆశీర్వదించండి.",
+  showerBtn:"అక్షింతలు చల్లండి",
   blessedN:n=>`మీరు <b>${n}</b> సార్లు ఆశీర్వదించారు`,
   blessed0:"మీ మొదటి దోసిలి కోసం ఎదురుచూపు",
   toasts:["శుభం!","కళ్యాణం కమనీయం!","ఆశీస్సులు అందాయి 🙏","దీర్ఘ సుమంగళీ భవ!","సుఖీభవ!"],
@@ -1238,7 +1237,8 @@ function petals(n){const h=$("#hero");for(let i=0;i<n;i++){const p=document.crea
   h.appendChild(p);setTimeout(()=>p.remove(),16000);}}
 
 /* ================= DIYAS ROW ================= */
-(function(){const w=$("#diyas");const n=window.innerWidth<500?7:11;let s="";for(let i=0;i<n;i++){const h=34+((i*37)%5)*10;s+=`<div class="hang" style="height:${h+24}px"><span class="ch"></span><span class="diya"><span class="bowl"></span><span class="flame" style="animation-delay:${-i*.3}s"></span></span></div>`}w.innerHTML=s;})();
+(function(){const w=$("#diyas");const n=window.innerWidth<500?7:11;let s="";for(let i=0;i<n;i++){const k=3+((i*37)%4);let beads="";for(let j=0;j<k;j++)beads+=`<i style="background:${j%2?'#f0a12a':'#e66b1f'}"></i>`;
+  s+=`<div class="hang"><span class="ch"></span>${beads}<svg viewBox="0 0 40 50" width="16" height="20"><path d="M20 4c-8 0-11 9-11 20 0 6-3 9-5 11h32c-2-2-5-5-5-11 0-11-3-20-11-20z" fill="url(#brass)"/><rect x="3" y="34" width="34" height="4" rx="2" fill="#8a6215"/><circle cx="20" cy="43" r="4" fill="url(#stud)"/></svg></div>`}w.innerHTML=s;})();
 
 /* stars */
 (function(){const s=$("#stars");let h="";for(let i=0;i<40;i++)h+=`<i style="left:${Math.random()*100}%;top:${Math.random()*70}%;animation-delay:${-Math.random()*3}s;opacity:${Math.random()}"></i>`;s.innerHTML=h;})();
@@ -1267,8 +1267,8 @@ const ICONS=[
  `${[...Array(7)].map((_,i)=>{const a=-2.6+i*0.55;const x=50+Math.cos(a)*36,y=58+Math.sin(a)*32;return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(a*57+90).toFixed(0)})"><ellipse rx="5" ry="8" fill="#a8221d" stroke="#1b0f0a" stroke-width="2"/><circle cy="-11" r="1.6" fill="#1b0f0a"/><circle cx="3" cy="-10" r="1.4" fill="#1b0f0a"/><circle cx="-3" cy="-10" r="1.4" fill="#1b0f0a"/></g>`}).join("")}<circle cx="50" cy="66" r="9" fill="#e8822a" stroke="#1b0f0a" stroke-width="2.5"/><path d="M50 58q6 6 0 14q-6-8 0-14z" fill="#ffd36b"/>`,
  // arundhati - saptarishi
  `<g fill="none" stroke="#fff4d6" stroke-width="1.2" stroke-dasharray="3 3"><path d="M10 30L28 34L42 46L56 54L62 76L86 80L88 58L62 76"/></g>${[[10,30],[28,34],[42,46],[56,54],[62,76],[86,80],[88,58]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4" fill="#ffd36b" stroke="#1b0f0a" stroke-width="1.5"/>`).join("")}<circle cx="49" cy="45" r="2.6" fill="#fff"><animate attributeName="r" values="2;4;2" dur="2s" repeatCount="indefinite"/></circle>`,
- // appagintalu - diya
- `<g stroke="#1b0f0a" stroke-width="3"><path d="M18 66q32 30 64 0z" fill="#c9962f"/><path d="M14 64h72" /></g><path d="M50 30q14 16 0 32q-14-16 0-32z" fill="#f0a12a" stroke="#1b0f0a" stroke-width="2.5"/><path d="M50 42q6 8 0 16q-6-8 0-16z" fill="#fff4c4"/><g fill="#a8221d" stroke="#1b0f0a" stroke-width="2"><path d="M10 92q14-10 30-6l-2 6q-14-2-26 6z"/><path d="M90 92q-14-10-30-6l2 6q14-2 26 6z"/></g>`
+ // appagintalu - tamboolam (betel leaves & coconut on a plate)
+ `<g stroke="#1b0f0a" stroke-width="2.5"><path d="M10 74h80l-6 12H16z" fill="#c9962f"/><path d="M20 72c-6-14 2-26 14-26 4 10 2 20-14 26z" fill="#3f8a3b"/><path d="M80 72c6-14-2-26-14-26-4 10-2 20 14 26z" fill="#3f8a3b"/><path d="M50 30c-11 0-18 10-18 22 0 10 8 18 18 18s18-8 18-18c0-12-7-22-18-22z" fill="#a8742c"/><path d="M50 30c-3 6-3 12 0 18" fill="none"/></g><g fill="#a8221d" stroke="#1b0f0a" stroke-width="1.5"><circle cx="38" cy="66" r="3"/><circle cx="62" cy="66" r="3"/></g>`
 ];
 function buildKatha(){
   const box=$("#kscroll");const R=T[L].rituals;
@@ -1397,7 +1397,7 @@ function updateBlessed(){const el=$("#blessed");if(!el)return;el.innerHTML=bless
   const COLORS=["#f2c230","#e9b73c","#f5cf4a","#dca226","#f7d867"];
   function spawn(x,y,n){
     for(let i=0;i<n;i++){
-      const t=Math.random();const type=t<.78?0:(t<.95?1:2);
+      const t=Math.random();const type=t<.9?0:2;
       parts.push({x:x+(Math.random()-.5)*40,y:y+(Math.random()-.5)*16,vx:(Math.random()-.5)*3.2,vy:-2.5-Math.random()*4.5,
         r:Math.random()*6.28,vr:(Math.random()-.5)*.4,type,s:type===1?2.4+Math.random()*1.4:1,c:type===2?"#d63a3a":COLORS[(Math.random()*5)|0]});
     }
